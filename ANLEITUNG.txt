@@ -1,0 +1,1 @@
+CardPilot AI 3.9. ZIP entpacken und Dateien bei Netlify hochladen. Bestehende Browserdaten nicht löschen. Icon ggf. PWA-Verknüpfung neu erstellen. Scanner weiterhin OCR, keine garantierte Motiverkennung.

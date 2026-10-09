@@ -1,7 +1,5 @@
-CardPilot AI 4.7
-Alle sieben Dateien direkt ins GitHub-Repository hochladen und Commit changes klicken.
-Danach https://cardpilot-scanner.github.io/cardpilot-ai/?v=44 öffnen.
-Die installierte App kann eine ältere Offline-Version anzeigen. Keine Browserdaten löschen, vorher JSON-Backup exportieren.
-Version 4.7 zeigt keine unbestätigten OCR-Zahlen und blendet den hektischen Scanbalken aus. Die Erkennungsqualität muss am Smartphone getestet werden.
-
-4.7: Erweiterte OCR-Bereiche, zweistellige Setgrößen wieder erlaubt, Kandidatenanzeige.
+CardPilot AI 4.8 – Scanner-Prototyp
+Alle sieben Dateien in das GitHub-Repository hochladen.
+Die Kartennummer unten links in die türkisfarbene Markierung halten.
+OCR ist keine visuelle Kartenidentifikation. Treffer immer prüfen.
+Browserdaten nicht löschen, Kartenbestand vorher als JSON sichern.

@@ -1,4 +1,4 @@
-CardPilot AI 4.8 – Scanner-Prototyp
+CardPilot AI 4.9 – Scanner-Prototyp
 Alle sieben Dateien in das GitHub-Repository hochladen.
 Die Kartennummer unten links in die türkisfarbene Markierung halten.
 OCR ist keine visuelle Kartenidentifikation. Treffer immer prüfen.

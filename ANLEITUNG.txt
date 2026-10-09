@@ -1,5 +1,5 @@
-CardPilot AI 4.4
+CardPilot AI 4.5
 Alle sieben Dateien direkt ins GitHub-Repository hochladen und Commit changes klicken.
 Danach https://cardpilot-scanner.github.io/cardpilot-ai/?v=44 öffnen.
 Die installierte App kann eine ältere Offline-Version anzeigen. Keine Browserdaten löschen, vorher JSON-Backup exportieren.
-Version 4.4 zeigt keine unbestätigten OCR-Zahlen und blendet den hektischen Scanbalken aus. Die Erkennungsqualität muss am Smartphone getestet werden.
+Version 4.5 zeigt keine unbestätigten OCR-Zahlen und blendet den hektischen Scanbalken aus. Die Erkennungsqualität muss am Smartphone getestet werden.

@@ -1,0 +1,369 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#152b4a"><meta name="description" content="CardPilot AI – lokale Sammelkartenverwaltung für Pokémon und One Piece"><link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml"><title>CardPilot AI</title><style>
+:root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#e8edf8;background:#0b1020}*{box-sizing:border-box}body{margin:0}header{background:#141d34;padding:22px 18px;border-bottom:1px solid #283450}main{max-width:850px;margin:auto;padding:18px 14px 80px}h1{font-size:25px;margin:0}h2{font-size:18px;margin:0 0 14px}.sub,.muted{color:#a5b2ce;font-size:13px}nav{display:flex;gap:8px;overflow:auto;margin:16px 0}button,.btn{border:0;border-radius:11px;padding:12px 15px;font:inherit;font-weight:650;cursor:pointer;background:#33425f;color:white}button.primary,.btn.primary{background:#597af6;color:#fff}nav button{white-space:nowrap}nav button.active{background:#597af6}.panel{background:#161f36;border:1px solid #2b3957;border-radius:17px;padding:17px;margin:14px 0}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.metric{background:#10182b;border-radius:12px;padding:14px}.metric strong{display:block;font-size:21px;margin-top:5px}label{display:block;color:#bdc9e2;font-size:13px;margin:12px 0 5px}input,select,textarea{width:100%;border:1px solid #41506d;border-radius:10px;padding:12px;background:#0d1629;color:white;font:inherit}input[type=file]{padding:8px}textarea{min-height:72px}form .grid{align-items:end}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.card{display:flex;gap:13px;align-items:flex-start;border-bottom:1px solid #34415d;padding:13px 0}.card:last-child{border-bottom:0}.thumb{width:75px;height:102px;object-fit:cover;border-radius:8px;background:#2d3954}.info{flex:1;min-width:0}.info b{display:block;overflow-wrap:anywhere}.pill{display:inline-block;background:#283d65;padding:3px 8px;border-radius:20px;font-size:11px;margin:4px 4px 4px 0}.good{color:#67e4ad}.bad{color:#ff929c}.hidden{display:none!important}.empty{color:#a5b2ce;padding:20px 0;text-align:center}small{color:#a5b2ce}footer{font-size:12px;color:#a5b2ce;margin-top:20px;line-height:1.5}#notice{position:fixed;bottom:15px;left:12px;right:12px;max-width:600px;margin:auto;background:#e6f1ff;color:#14203a;padding:13px;border-radius:12px;display:none;z-index:3}@media(min-width:600px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:420px){.grid.formgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.card-photo-button{display:none!important;margin:5px auto 10px;display:block;padding:7px 10px;font-size:12px;border:1px solid #58729d;background:#243657;color:#fff;border-radius:9px;cursor:pointer}.set-tile{overflow:hidden}</style><style id="set-image-style">.set-card-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}.set-tile{display:flex;flex-direction:column;align-items:stretch;text-align:left;gap:8px;padding:10px;background:#202d46;border:1px solid #344563;border-radius:14px;color:#f2f5ff;min-width:0;cursor:pointer}.set-tile b{font-size:14px;overflow-wrap:anywhere}.set-artbox{aspect-ratio:0.72;display:flex;align-items:center;justify-content:center;background:#10182b;border-radius:10px;overflow:hidden;position:relative}.set-art{width:100%;height:100%;object-fit:contain;position:relative;z-index:1}.art-placeholder{position:absolute;color:#a8b2c6;text-align:center;padding:10px;font-size:13px}.set-card-grid .hidden{display:none!important}@media(min-width:720px){.set-card-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}.card-photo-button{display:none!important;margin:5px auto 10px;display:block;padding:7px 10px;font-size:12px;border:1px solid #58729d;background:#243657;color:#fff;border-radius:9px;cursor:pointer}.set-tile{overflow:hidden}</style><style id="premium-theme">
+:root{color-scheme:dark;--bg:#090f20;--panel:#121d34;--line:#304564;--accent:#48d7c0;--violet:#8c7af8}
+body{background:radial-gradient(ellipse 110% 420px at 50% -160px,#1c3664 0%,#090f20 80%);color:#eef4ff}
+header{background:linear-gradient(125deg,#152b4a,#182345 56%,#272451);border-bottom:1px solid #3c5373;padding:26px 18px 24px}
+header h1{font-size:30px;font-weight:850;letter-spacing:-1px}.brand-icon{display:inline-grid;place-items:center;width:44px;height:44px;border-radius:14px;background:linear-gradient(145deg,#3de1c6,#736dff);color:#0c1530;font-size:31px;box-shadow:0 8px 22px #39d5c344;vertical-align:middle;margin-right:5px}.brand-ai{color:#54e5ce}
+header .sub{color:#c4d6ee;font-size:13px;margin-top:8px}
+nav{gap:9px;scrollbar-width:none}nav button{border-radius:13px;background:#1e304d;border:1px solid #334d70;padding:13px 17px}nav button.active{background:linear-gradient(115deg,#45d3c0,#697df9);color:#09142a;border-color:transparent;box-shadow:0 6px 20px #49caba22}
+.panel{background:linear-gradient(160deg,#15243c,#111b30);border:1px solid #34496b;box-shadow:0 10px 26px #05091640;border-radius:21px}
+button,.btn{background:#2b4263;border:1px solid #3d567a;border-radius:13px;transition:filter .15s}button:active,.btn:active{filter:brightness(1.25)}button.primary,.btn.primary{background:linear-gradient(115deg,#3dcdbd,#6679f4);color:#07142a;border-color:transparent}
+input,select,textarea{background:#0c172c;border:1px solid #496181;border-radius:12px}input:focus,select:focus,textarea:focus{outline:2px solid #44d5c0;outline-offset:1px}
+.metric{background:#0e1c33;border:1px solid #273f61;border-radius:15px}.metric strong{color:#62e5ce}.pill{background:#1f3d58;color:#c9f9f0}
+.set-tile{background:#192a45;border-color:#395776}.set-artbox{background:#0c172c}
+.scanner-view{width:100%;position:relative;aspect-ratio:3/4;max-height:540px;background:linear-gradient(145deg,#101d32,#091426);border:1px solid #4a6688;border-radius:18px;overflow:hidden}
+.scanner-video{display:block;width:100%;height:100%;object-fit:cover;background:#0c1524}
+.scan-guide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;padding:7% 13%}
+.scan-guide-card{width:100%;height:100%;border:2px solid #66f5d0b8;border-radius:17px;box-shadow:0 0 0 999px #05101a1a,inset 0 0 25px #56d7c122;position:relative}
+.scan-guide-card:before,.scan-guide-card:after{content:'';position:absolute;width:36px;height:36px;border-color:#63f4d1;border-style:solid}.scan-guide-card:before{top:-3px;left:-3px;border-width:5px 0 0 5px;border-radius:15px 0 0 0}.scan-guide-card:after{bottom:-3px;right:-3px;border-width:0 5px 5px 0;border-radius:0 0 15px 0}
+.scan-guide-card span{position:absolute;bottom:8px;left:5%;right:5%;text-align:center;background:#081527bb;color:#b7f9eb;border-radius:8px;padding:7px;font-size:12px}
+#scanStatus{border-left:3px solid #49dac7;padding:9px 12px;background:#0b1d2e;border-radius:8px;line-height:1.5}
+@media(max-width:430px){main{padding:13px 12px 70px}.panel{padding:14px}.scanner-view{aspect-ratio:3/4}header h1{font-size:27px}}
+</style><style id="fresh37">
+:root{color-scheme:light;--bg:#f4f8ff;--panel:#ffffff;--line:#dbe5f5;--accent:#0cbaa9;--violet:#7554eb}
+html,body{background:#f4f8ff!important;color:#23314e!important}
+body{background:linear-gradient(180deg,#e4f3ff 0,#f4f8ff 290px,#f8f7ff 100%)!important}
+header{background:linear-gradient(125deg,#e1f5ff,#e9e8ff 60%,#f8eaff)!important;border-bottom:1px solid #d7e5f5!important;padding:19px 17px!important}
+header h1{color:#1e3156!important;font-size:27px!important}header .sub{color:#526887!important}
+.brand-icon{background:transparent!important;box-shadow:none!important;width:47px!important;height:47px!important;vertical-align:middle!important}.brand-ai{color:#684ce3!important}
+nav{gap:8px!important;margin:13px 0!important}nav button{background:white!important;color:#334769!important;border:1px solid #d6e1f2!important;box-shadow:0 2px 9px #9bb2d122!important;padding:11px 13px!important}
+nav button.active{background:linear-gradient(110deg,#23c9b4,#7d6af0)!important;color:#fff!important;border:0!important}
+.panel{background:#fff!important;color:#23314e!important;border:1px solid #dce6f5!important;box-shadow:0 8px 28px #9db4d52c!important;border-radius:20px!important}
+h2{color:#263a60!important} .sub,.muted,small,footer,label{color:#5b6c88!important}
+button,.btn{background:#e8edff!important;color:#354c79!important;border:1px solid #d9e3f9!important;border-radius:13px!important}
+button.primary,.btn.primary{background:linear-gradient(115deg,#19bea9,#6d70ee)!important;color:white!important;border:0!important}
+input,select,textarea{background:#f8fbff!important;color:#263755!important;border:1px solid #cddcf1!important}
+.metric{background:#f0f7ff!important;border:1px solid #e1e9fa!important}.metric strong{color:#147e88!important}.pill{background:#e9f5ff!important;color:#376080!important}
+.set-tile{background:#fff!important;color:#243957!important;border:1px solid #dbe6f5!important}.set-artbox{background:#f0f5fc!important}
+.scanner-view{width:100%!important;height:clamp(215px,37dvh,315px)!important;max-height:315px!important;aspect-ratio:auto!important;border:1px solid #9fc8e3!important;background:#172237!important;border-radius:17px!important}
+.scanner-video{width:100%!important;height:100%!important;object-fit:cover!important;background:#101b2d!important}
+.scan-guide{padding:5px 17%!important}.scan-guide-card{border-color:#41f1d1!important}.scan-guide-card span{font-size:11px!important;padding:4px!important}
+#liveArea .actions{display:grid!important;grid-template-columns:1.15fr 1fr .9fr!important;gap:6px!important;margin-top:8px!important}
+#liveArea .actions button{padding:11px 5px!important;font-size:13px!important;white-space:nowrap!important;min-width:0!important}
+#liveArea .muted{margin:5px 0!important;font-size:12px!important}
+#scanStatus{background:#ecf7ff!important;color:#3b5475!important;border-left:3px solid #1dbdab!important;padding:9px!important;font-size:13px!important}
+#liveArea{margin:9px 0!important}
+#research .panel{padding:13px!important}
+@media(max-width:430px){main{padding:10px 10px 70px!important}.panel{padding:13px!important}.scanner-view{height:clamp(205px,34dvh,280px)!important}#liveArea .actions button{font-size:12px!important}}
+</style><style id="scanner47">
+/* Keep controls and live feedback within a single mobile viewport. */
+#quickScanPanel{padding:10px!important;margin-top:6px!important}
+#quickScanPanel h2{font-size:18px!important;margin:0 0 5px!important}
+#quickScanPanel>.actions{display:flex!important;gap:6px!important;margin:5px 0!important}
+#quickScanPanel>.actions button{font-size:12px!important;padding:8px 10px!important}
+#scanStatus{margin:4px 0!important;padding:5px 8px!important;font-size:12px!important}
+#scanResult{margin:4px 0!important;padding:5px!important}
+#scanResult label{font-size:11px!important}
+#scanDetected{font-size:18px!important;padding:6px!important}
+#scanResult .actions button{padding:6px!important;font-size:12px!important}
+#liveArea{margin:5px 0!important}
+#liveArea .scanner-view{height:clamp(200px,33dvh,285px)!important;max-height:285px!important}
+#liveArea .actions{display:flex!important;flex-wrap:wrap!important;gap:5px!important;margin:5px 0!important}
+#liveArea .actions button{padding:7px 8px!important;font-size:12px!important;flex:1 1 auto!important}
+#liveArea .scan-beam{display:none!important}
+#liveArea .scan-guide-card span{display:none!important}
+#scanAutoFind{width:auto!important}
+#quickScanPanel>label{font-size:12px!important;margin:5px 0!important}
+@media(max-width:430px){#quickScanPanel{padding:9px!important}#liveArea .scanner-view{height:clamp(195px,31dvh,260px)!important}}
+</style><style id="scanner38">.scan-guide-card{overflow:hidden}.scan-beam{position:absolute;left:2%;right:2%;height:3px;top:4%;background:#61fff0;box-shadow:0 0 8px 3px #36f4e7,0 0 22px 6px #37d5ff88;animation:beamMove 3.2s ease-in-out infinite alternate;z-index:3}@keyframes beamMove{from{top:5%}to{top:93%}}@media(prefers-reduced-motion:reduce){.scan-beam{animation:none;top:50%}}#liveArea .scanner-view{height:clamp(195px,30dvh,255px)!important}#scanStatus{font-weight:600}</style><style id="scanner39">#liveArea .scanner-view{height:clamp(260px,43dvh,390px)!important}#liveArea .actions{grid-template-columns:repeat(3,minmax(0,1fr))!important}#liveArea .actions button{font-size:12px!important}header{background:linear-gradient(110deg,#eefcff,#ede9ff)!important}#scanStatus{border-left-color:#6c64e8!important}</style><style id="scanner46">
+/* Compact mobile-first scanner: status and detected number remain above camera. */
+#liveArea .scanner-view{height:clamp(160px,27dvh,225px)!important;max-height:225px!important}
+#scanStatus{margin:7px 0!important;padding:7px 10px!important;font-size:13px!important}
+#scanResult{margin:7px 0!important;padding:8px!important;border:1px solid #b9d8eb;border-radius:12px;background:#f2faff}
+#scanResult label{font-size:12px!important;margin:0 0 3px!important}
+#scanDetected{padding:8px 10px!important;font-size:18px!important;font-weight:700!important;margin:0!important}
+#scanResult .actions{margin:5px 0 0!important}
+#scanResult .actions button{padding:8px 10px!important;font-size:13px!important}
+#liveArea .muted{margin:4px 0!important}
+#liveArea .actions{margin-top:5px!important}
+#liveArea .actions button{padding:8px 4px!important}
+@media(max-width:430px){#liveArea .scanner-view{height:clamp(155px,25dvh,210px)!important}}
+</style><style id="scanner49">#quickScanPanel h2{font-size:17px!important}#quickScanPanel>.actions{margin:4px 0!important}#scanStatus{min-height:32px}#scanResult{scroll-margin-top:12px}#liveArea .scanner-view{height:clamp(175px,28dvh,245px)!important}#scanDetected{font-variant-numeric:tabular-nums}</style><style id="scanner50">#liveArea .scanner-view{height:clamp(290px,48dvh,450px)!important;aspect-ratio:3/4!important;background:#101b2d!important}#liveArea .scanner-video{object-fit:cover!important}#liveArea .scan-guide{padding:4% 8%!important}#liveArea .scan-guide-card{aspect-ratio: 3/4;max-width:80%;height:auto!important;max-height:96%;margin:auto}</style></head><body><header><div style="max-width:850px;margin:auto"><h1><span class="brand-icon"><img src="icon.svg" alt="" style="width:40px;height:40px;display:block"></span> CardPilot <span class="brand-ai">AI</span></h1><div class="sub">Dein Kartenbestand. Deine Verkäufe. Deine Zahlen. · Version 5.0</div></div></header><main><nav><button class="active" data-tab="dashboard">Übersicht</button><button data-tab="add">+ Karte</button><button data-tab="inventory">Bestand</button><button data-tab="research">🔎 Preischeck</button><button data-tab="settings">Einstellungen</button></nav>
+<section id="dashboard"><div class="grid"><div class="metric"><small>Karten im Bestand</small><strong id="count">0</strong></div><div class="metric"><small>Einkaufswert Bestand</small><strong id="stockcost">0,00 €</strong></div><div class="metric"><small>Verkaufsumsatz</small><strong id="revenue">0,00 €</strong></div><div class="metric"><small>Ergebnis Verkäufe</small><strong id="profit">0,00 €</strong></div></div><div class="panel"><h2>Schnellstart</h2><p class="muted">Fotografiere eine Karte, erfasse ihre Daten und berechne deinen Verkaufserlös. Der Scanner erkennt Text und Kartennummern, aber noch keine Kartenmotive. Preise werden nicht automatisch abgerufen.</p><button class="primary" onclick="tab('add')">Erste Karte erfassen</button></div><div class="panel"><h2>Zuletzt erfasst</h2><div id="recent"></div></div></section>
+<section id="add" class="hidden"><div class="panel"><h2 id="formtitle">Karte erfassen</h2><form id="cardform"><input type="hidden" id="editid"><label for="photo">Kartenfoto (Kamera oder Galerie)</label><input id="photo" type="file" accept="image/*" capture="environment"><img id="preview" class="thumb hidden" alt="Fotovorschau" style="margin-top:10px"><label for="game">Kartenspiel</label><select id="game"><option>Pokémon</option><option>One Piece</option></select><label for="name">Kartenname *</label><input id="name" required maxlength="140" placeholder="z. B. Pikachu"><div class="grid formgrid"><div><label for="number">Kartennummer</label><input id="number" placeholder="z. B. 025/165"></div><div><label for="set">Set / Edition</label><input id="set" placeholder="Setname"></div><div><label for="language">Sprache</label><select id="language"><option>Deutsch</option><option>Englisch</option><option>Japanisch</option><option>Chinesisch</option><option>Koreanisch</option><option>Andere</option></select></div><div><label for="condition">Zustand</label><select id="condition"><option>Near Mint</option><option>Excellent</option><option>Good</option><option>Played</option><option>Poor</option><option>Versiegelt</option></select></div><div><label for="buy">Einkauf (€)</label><input id="buy" inputmode="decimal" type="number" min="0" step="0.01" value="0"></div><div><label for="market">CM-Referenzpreis (€)</label><input id="market" inputmode="decimal" type="number" min="0" step="0.01" placeholder="manuell"></div><div><label for="sell">Verkauf (€)</label><input id="sell" inputmode="decimal" type="number" min="0" step="0.01" placeholder="geplant/realisiert"></div><div><label for="shipping">Eigene Versandkosten (€)</label><input id="shipping" inputmode="decimal" type="number" min="0" step="0.01" value="0"></div></div><label for="status">Status</label><select id="status"><option value="stock">Im Bestand</option><option value="sold">Verkauft</option></select><label for="buyer">Käufer / Bestellreferenz (optional)</label><input id="buyer" maxlength="120"><label for="notes">Notizen</label><textarea id="notes" placeholder="z. B. Whatnot-Losnummer, Kartenvariante"></textarea><div class="panel" style="background:#10182b"><strong>Gewinnvorschau (vor Steuern)</strong><div id="estimate" style="font-size:23px;margin:8px 0">–</div><small>Berechnung mit deinen Gebühreneinstellungen. Ohne tatsächlichen Verkaufspreis keine Berechnung. Keine Steuerberatung.</small></div><div class="actions"><button class="primary" type="submit">Karte speichern</button><button type="button" id="cancel">Zurücksetzen</button></div></form></div></section>
+<section id="inventory" class="hidden"><div class="panel"><h2>Deine Karten</h2><input id="search" placeholder="Name, Nummer oder Set suchen"><div class="grid formgrid"><div><label>Spiel</label><select id="filtergame"><option value="">Alle</option><option>Pokémon</option><option>One Piece</option></select></div><div><label>Status</label><select id="filterstatus"><option value="">Alle</option><option value="stock">Im Bestand</option><option value="sold">Verkauft</option></select></div></div><div id="cards"></div></div></section>
+<section id="research" class="hidden">
+<div class="panel" id="quickScanPanel" style="border:1px solid #5076af">
+<h2>📷 Karten-Scanner · Live 5.0</h2>
+
+<div class="actions"><button type="button" id="scanCamera" class="primary">📹 Live-Kamera starten</button><button type="button" id="scanScreen">🖼️ Screenshot scannen</button></div>
+<div id="liveArea" style="display:none;margin:12px 0"><div class="scanner-view"><video id="liveVideo" autoplay muted playsinline class="scanner-video"></video><div class="scan-guide"><div class="scan-guide-card"><div class="scan-beam"></div><span>Bitte Karte hier ausrichten</span></div></div></div><div class="actions"><button type="button" id="liveOnce" class="primary">🔎 Prüfen</button><button type="button" id="liveTorch" style="display:none">🔦 Licht</button><button type="button" id="liveStop">■ Stoppen</button></div><div class="actions"><button type="button" id="liveZoom">🔍 Zoom 1×</button><button type="button" id="liveFocus">◎ Fokus</button></div></div><input type="file" id="scanCameraFile" accept="image/*" capture="environment" hidden><input type="file" id="scanScreenFile" accept="image/*" hidden>
+<img id="scanPreview" alt="Scan-Vorschau" style="display:none;max-width:200px;max-height:260px;border-radius:10px;margin-top:10px">
+<p id="scanStatus" class="muted" aria-live="polite">Live-Erkennung (Beta): liest Text und Kartennummern, erkennt noch keine Kartenmotive. Beim ersten Start wird das OCR-Modul geladen.</p>
+<label style="display:flex;align-items:center;gap:8px;margin:12px 0"><input type="checkbox" id="scanAutoFind" checked style="width:auto"> Nach bestätigter Nummer automatisch im Katalog suchen</label><div id="scanResult" style="display:none"><label for="scanDetected">Erkannte Kartennummer oder Kartenname (korrigierbar)</label><input id="scanDetected" placeholder="z. B. 105/128 oder Solgaleo"><div class="actions"><button type="button" class="primary" id="scanFind">🔎 Im Katalog suchen</button></div></div>
+<p class="muted" style="font-size:12px">Kein Live-Bildschirmzugriff. Kein automatisch verifizierter Cardmarket-Preis. Besonders japanische/chinesische Karten und verdeckte Nummern können nicht zuverlässig erkannt werden.</p>
+</div>
+
+<div class="panel"><h2>🔎 Schnellcheck beim Einkauf</h2><p class="muted">Suche eine Karte nach Name und Nummer. Cardmarket und eBay öffnen sich mit passenden Suchbegriffen. Vergleiche immer Set, Sprache, Variante und Zustand. Die Suchergebnisse sind keine automatisch bestätigten Kartenwerte.</p>
+<label>Spiel</label><select id="rGame"><option value="Pokemon">Pokémon</option><option value="One Piece">One Piece</option></select>
+<div class="grid formgrid"><div><label for="rQuery">Kartenname (optional)</label><input id="rQuery" placeholder="z. B. Pikachu" autocomplete="off"></div><div><label for="rNumber">Kartennummer (optional)</label><input id="rNumber" placeholder="z. B. 049/128 oder OP05-119" autocomplete="off"></div><div><label for="rSet">Serie / Set (optional)</label><input id="rSet" placeholder="z. B. Jubiläum, Celebrations, 30C" autocomplete="off"></div><div><label for="rLanguage">Kartensprache</label><select id="rLanguage"><option value="">Alle Sprachen</option><option>Deutsch</option><option>Englisch</option><option>Japanisch</option><option>Chinesisch</option><option>Koreanisch</option></select></div></div><p class="muted">Du kannst nur die Nummer oder nur einen Setnamen eingeben. Bei einer Set-Suche wählst du zuerst das passende Set aus. Der Katalog enthält möglicherweise nicht jede Sprach- oder Sonderausgabe.</p>
+<div class="actions"><button class="primary" id="rSearch">Preise suchen</button><button id="rCatalog">Pokémon-Katalog durchsuchen</button></div>
+<p class="muted" id="rStatus" aria-live="polite"></p><div id="rResults"></div></div>
+<div class="panel"><h2>💶 Whatnot-Gewinnrechner</h2><p class="muted">Rechenhilfe mit deinen Annahmen. Der Marktpreis wird nicht automatisch eingelesen. Gebühren sind voreingestellt aus deinen App-Einstellungen.</p>
+<div class="grid formgrid"><div><label>Einkauf (€)</label><input id="rBuy" type="number" min="0" step="0.01" value="5"></div><div><label>Verkaufspreis (€)</label><input id="rSell" type="number" min="0" step="0.01" value="10"></div><div><label>Weitere Kosten (€)</label><input id="rExtra" type="number" min="0" step="0.01" value="0"></div><div><label>Gebühren (%)</label><input id="rFee" type="number" min="0" max="100" step="0.01" value="10"></div><div><label>Feste Gebühr (€)</label><input id="rFixed" type="number" min="0" step="0.01" value="0"></div></div>
+<div class="metric" style="margin-top:14px"><span class="muted">Voraussichtlicher Gewinn vor Steuern</span><strong id="rProfit">–</strong><small id="rMargin"></small></div>
+<p class="muted">Berücksichtige gegebenenfalls zusätzlich Versand, Verpackung, Zahlungsgebühren und Steuern. Der tatsächliche Whatnot-Gebührensatz kann abweichen.</p></div></section><section id="settings" class="hidden"><div class="panel"><h2>Verkaufsgebühren</h2><p class="muted">Trage die tatsächlich für dein Verkäuferkonto geltenden Gebühren ein. Die Werte sind frei änderbare Rechenannahmen, keine bestätigten Whatnot-Tarife.</p><div class="grid formgrid"><div><label>Prozentuale Gebühr (%)</label><input id="feePercent" type="number" min="0" max="100" step="0.01" value="10"></div><div><label>Feste Gebühr je Verkauf (€)</label><input id="feeFixed" type="number" min="0" step="0.01" value="0"></div></div><button class="primary" id="saveSettings" style="margin-top:14px">Gebühren speichern</button></div><div class="panel"><h2>Daten sichern</h2><p class="muted">Die Daten bleiben lokal in diesem Browser. Browserdaten löschen, Gerätewechsel oder eine Deinstallation können sie entfernen. Sichere regelmäßig deine Daten!</p><div class="actions"><button id="exportCsv">CSV exportieren</button><button id="exportJson">Vollständiges Backup (JSON)</button><label class="btn" style="margin:0">Backup importieren<input id="importJson" type="file" accept="application/json,.json" style="display:none"></label></div><p><small>CSV ohne Fotos; JSON-Backup enthält auch gespeicherte Bilder. Import ersetzt den aktuellen Datenbestand nach Bestätigung.</small></p></div><div class="panel"><h2>Installation</h2><p class="muted">Nach Veröffentlichung auf einer HTTPS-Adresse in Chrome öffnen und über das Browsermenü „Zum Startbildschirm hinzufügen“ oder „App installieren“ wählen. Beim lokalen Öffnen der HTML-Datei ist die PWA-Installation nicht garantiert.</p><button id="install" class="primary hidden">App installieren</button></div><footer>CardPilot AI 4.4 · Kartensuche mit Bildern und Setangaben, plus externe Preislinks. Keine bestätigte Cardmarket-Liveabfrage. Live-Kamera mit OCR und Screenshot-Erkennung (Beta); keine Cloud-Synchronisierung.</footer></section><div id="notice" role="status"></div></main><script>
+const KEY='cardpilot_cards_v1',SET='cardpilot_settings_v1';let cards=[],settings={percent:10,fixed:0},photoData='',deferredPrompt=null;const $=id=>document.getElementById(id),money=n=>Number(n||0).toLocaleString('de-DE',{style:'currency',currency:'EUR'}),num=id=>Math.max(0,Number($(id).value)||0),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function notify(msg){$('notice').textContent=msg;$('notice').style.display='block';setTimeout(()=>$('notice').style.display='none',3300)}function load(){try{cards=JSON.parse(localStorage.getItem(KEY)||'[]');settings={...settings,...JSON.parse(localStorage.getItem(SET)||'{}')}}catch(e){notify('Lokale Daten konnten nicht gelesen werden.')}}function persist(){try{localStorage.setItem(KEY,JSON.stringify(cards));return true}catch(e){notify('Speicher voll! Bitte Backup erstellen oder kleinere Bilder nutzen.');return false}}function calc(c){if(c.sell===null||c.sell===undefined||c.sell==='')return null;const price=Number(c.sell),fees=price*settings.percent/100+settings.fixed;return price-Number(c.buy||0)-Number(c.shipping||0)-fees}function tab(t){document.querySelectorAll('main>section').forEach(e=>e.classList.toggle('hidden',e.id!==t));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.tab===t));if(t==='inventory')renderCards();if(t==='dashboard')dashboard();window.scrollTo(0,0)}document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>tab(b.dataset.tab)));function cardHtml(c){const p=calc(c);return `<div class="card"><img class="thumb" alt="Kartenfoto" src="${c.photo||'icon.svg'}"><div class="info"><b>${esc(c.name)}</b><span class="pill">${esc(c.game)}</span><span class="pill">${c.status==='sold'?'Verkauft':'Bestand'}</span><div class="muted">${esc(c.number)} · ${esc(c.set)} · ${esc(c.language)}</div><div style="margin-top:6px">EK ${money(c.buy)} ${c.market!==null?'· CM manuell '+money(c.market):''}</div><div class="${p===null?'muted':p>=0?'good':'bad'}">${p===null?'Kein Verkaufspreis':`Ergebnis ${money(p)}`}</div><div class="actions"><button data-edit="${esc(c.id)}">Bearbeiten</button><button data-delete="${esc(c.id)}">Löschen</button></div></div></div>`}function renderCards(){const q=$('search').value.toLowerCase(),g=$('filtergame').value,s=$('filterstatus').value;const filtered=cards.filter(c=>(!g||c.game===g)&&(!s||c.status===s)&&[c.name,c.number,c.set].join(' ').toLowerCase().includes(q));$('cards').innerHTML=filtered.length?filtered.map(cardHtml).join(''):'<div class="empty">Keine Karten gefunden.</div>'}function dashboard(){const stock=cards.filter(c=>c.status==='stock'),sold=cards.filter(c=>c.status==='sold');$('count').textContent=stock.length;$('stockcost').textContent=money(stock.reduce((s,c)=>s+Number(c.buy||0),0));$('revenue').textContent=money(sold.reduce((s,c)=>s+Number(c.sell||0),0));$('profit').textContent=money(sold.reduce((s,c)=>s+(calc(c)||0),0));$('recent').innerHTML=cards.length?cards.slice(0,3).map(cardHtml).join(''):'<div class="empty">Noch keine Karten gespeichert.</div>'}function resetForm(){$('cardform').reset();$('editid').value='';$('formtitle').textContent='Karte erfassen';photoData='';$('preview').classList.add('hidden');$('estimate').textContent='–';$('buy').value='0';$('shipping').value='0'}$('cancel').onclick=resetForm;['buy','sell','shipping'].forEach(id=>$(id).addEventListener('input',estimate));function estimate(){const v=$('sell').value;$('estimate').textContent=v===''?'–':money(calc({sell:Number(v),buy:num('buy'),shipping:num('shipping')}))}async function shrinkImage(file){return new Promise((resolve,reject)=>{const im=new Image(),url=URL.createObjectURL(file);im.onload=()=>{try{const ratio=Math.min(1,700/Math.max(im.width,im.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(im.width*ratio));canvas.height=Math.max(1,Math.round(im.height*ratio));canvas.getContext('2d').drawImage(im,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);resolve(canvas.toDataURL('image/jpeg',.65))}catch(e){reject(e)}};im.onerror=()=>{URL.revokeObjectURL(url);reject(Error('Foto nicht lesbar'))};im.src=url})}$('photo').addEventListener('change',async e=>{const f=e.target.files[0];if(!f)return;try{photoData=await shrinkImage(f);$('preview').src=photoData;$('preview').classList.remove('hidden')}catch(e){notify('Bild konnte nicht geladen werden.')}});$('cardform').onsubmit=e=>{e.preventDefault();const id=$('editid').value,existing=cards.find(c=>c.id===id),c={id:id||('c'+Date.now()+Math.random().toString(36).slice(2)),created:existing?.created||new Date().toISOString(),game:$('game').value,name:$('name').value.trim(),number:$('number').value.trim(),set:$('set').value.trim(),language:$('language').value,condition:$('condition').value,buy:num('buy'),market:$('market').value===''?null:num('market'),sell:$('sell').value===''?null:num('sell'),shipping:num('shipping'),status:$('status').value,buyer:$('buyer').value.trim(),notes:$('notes').value.trim(),photo:photoData||existing?.photo||''};if(!c.name)return;if(existing)cards=cards.map(x=>x.id===id?c:x);else cards.unshift(c);if(persist()){resetForm();tab('inventory');notify('Karte gespeichert.')}else{load()}};function edit(id){const c=cards.find(x=>x.id===id);if(!c)return;resetForm();['game','name','number','set','language','condition','status','buyer','notes'].forEach(k=>$(k).value=c[k]||'');['buy','shipping'].forEach(k=>$(k).value=c[k]??0);['market','sell'].forEach(k=>$(k).value=c[k]??'');$('editid').value=c.id;$('formtitle').textContent='Karte bearbeiten';photoData=c.photo||'';if(photoData){$('preview').src=photoData;$('preview').classList.remove('hidden')}estimate();tab('add')}document.addEventListener('click',e=>{const b=e.target.closest('[data-edit],[data-delete]');if(!b)return;if(b.dataset.edit)edit(b.dataset.edit);else if(confirm('Diese Karte wirklich löschen?')){cards=cards.filter(c=>c.id!==b.dataset.delete);persist();renderCards();dashboard()}});['search','filtergame','filterstatus'].forEach(id=>$(id).addEventListener('input',renderCards));$('saveSettings').onclick=()=>{settings={percent:num('feePercent'),fixed:num('feeFixed')};localStorage.setItem(SET,JSON.stringify(settings));dashboard();notify('Gebühren gespeichert.')};function download(content,name,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}$('exportJson').onclick=()=>download(JSON.stringify({version:1,exported:new Date().toISOString(),settings,cards},null,2),'cardpilot-backup.json','application/json');$('exportCsv').onclick=()=>{const cols=['id','created','game','name','number','set','language','condition','buy','market','sell','shipping','status','buyer','notes','profit'];const quote=x=>'"'+String(x??'').replace(/"/g,'""')+'"';const lines=[cols.join(';'),...cards.map(c=>cols.map(k=>quote(k==='profit'?calc(c):c[k])).join(';'))];download('\ufeff'+lines.join('\r\n'),'cardpilot-karten.csv','text/csv;charset=utf-8')};$('importJson').onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const data=JSON.parse(await f.text());if(!Array.isArray(data.cards)||!data.cards.every(c=>c&&typeof c.id==='string'&&typeof c.name==='string'))throw Error('Ungültiges Backup');if(!confirm('Alle vorhandenen Karten durch dieses Backup ersetzen?'))return;const old=cards,oldSettings=settings;cards=data.cards;settings={percent:10,fixed:0,...data.settings};if(!persist()){cards=old;settings=oldSettings;return}localStorage.setItem(SET,JSON.stringify(settings));$('feePercent').value=settings.percent;$('feeFixed').value=settings.fixed;dashboard();notify('Backup importiert.')}catch(err){notify('Ungültige Backup-Datei.')}e.target.value=''};window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;$('install').classList.remove('hidden')});$('install').onclick=async()=>{if(deferredPrompt){deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$('install').classList.add('hidden')}};load();$('feePercent').value=settings.percent;$('feeFixed').value=settings.fixed;dashboard();if('serviceWorker'in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
+
+// CardPilot 2.0: external search links and optional public TCGdex catalog query.
+const rNum=id=>Math.max(0,Number($(id).value)||0);
+function rCalculate(){const sale=rNum('rSell'),buy=rNum('rBuy'),extra=rNum('rExtra'),fee=rNum('rFee'),fixed=rNum('rFixed');const profit=sale-buy-extra-sale*fee/100-fixed;$('rProfit').textContent=money(profit);$('rProfit').className=profit>=0?'good':'bad';$('rMargin').textContent=sale>0?'Marge vom Umsatz: '+(profit/sale*100).toLocaleString('de-DE',{maximumFractionDigits:1})+' %':'Marge: –';}
+['rBuy','rSell','rExtra','rFee','rFixed'].forEach(id=>$(id).addEventListener('input',rCalculate));
+document.querySelector('[data-tab="research"]').addEventListener('click',()=>{$('rFee').value=settings.percent;$('rFixed').value=settings.fixed;rCalculate()});
+function rLink(url,label){const a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.className='btn';a.textContent=label;return a;}
+function rParts(){const name=$('rQuery').value.trim(),number=$('rNumber').value.trim(),set=$('rSet').value.trim(),lang=$('rLanguage').value;return {name,number,set,lang,game:$('rGame').value};}
+function rNumberShort(n){const m=n.match(/(?:^|\s)(\d{1,4})(?:\/\d{1,4})?$/);return m?String(Number(m[1])):n;}
+function rSearch(){const p=rParts();if(!p.name&&!p.number&&!p.set){$('rStatus').textContent='Bitte Name, Kartennummer oder Set eingeben.';return;}const box=$('rResults');box.replaceChildren();const links=document.createElement('div');links.className='actions';const gamePath=p.game==='Pokemon'?'Pokemon':'OnePiece';const cmQuery=[p.name,p.set,p.number?rNumberShort(p.number):''].filter(Boolean).join(' ');const ebayQuery=[p.game,p.name,p.number,p.set,p.lang].filter(Boolean).join(' ');links.append(rLink('https://www.cardmarket.com/de/'+gamePath+'/Products/Search?searchMode=v2&searchString='+encodeURIComponent(cmQuery),'Cardmarket-Suche'),rLink('https://www.ebay.de/sch/i.html?_nkw='+encodeURIComponent(ebayQuery)+'&LH_Sold=1&LH_Complete=1','eBay: verkauft'),rLink('https://www.ebay.de/sch/i.html?_nkw='+encodeURIComponent(ebayQuery),'eBay: Angebote'));box.append(links);$('rStatus').textContent='Suchlinks erstellt. Cardmarket-Suche kann je nach Set-Code andere Treffer liefern. Bitte Nummer, Set, Sprache und Variante prüfen.';}
+$('rSearch').onclick=rSearch;['rQuery','rNumber','rSet'].forEach(id=>$(id).addEventListener('keydown',e=>{if(e.key==='Enter')rSearch()}));
+let lastSearchToken=0;
+function selectedCardLinks(c,detail){
+ const setName=detail?.set?.name||c.id.split('-')[0];
+ const num=String(detail?.localId||c.localId||'');
+ const total=detail?.set?.cardCount?.official;
+ $('rQuery').value=detail?.name||c.name||'';
+ $('rNumber').value=num+(total?'/'+total:'');
+ $('rSet').value=setName;
+ const qcm=[c.name,num].filter(Boolean).join(' ');
+ const qe=[c.name,num,setName].filter(Boolean).join(' ');
+ const box=$('rResults');
+ const panel=document.createElement('div');panel.className='panel';panel.style.marginTop='12px';
+ const title=document.createElement('h2');title.textContent='Ausgewählt: '+(c.name||'Karte')+' · '+num+' · '+setName;panel.append(title);
+ const note=document.createElement('p');note.className='muted';note.textContent='Öffne die Preisvergleichsseite. Beim Zurückkehren bleibt diese Karte ausgewählt. Prüfe dort Sprache, Variante und Zustand.';panel.append(note);
+ const links=document.createElement('div');links.className='actions';
+ links.append(rLink('https://www.cardmarket.com/de/Pokemon/Products/Search?searchMode=v2&searchString='+encodeURIComponent(qcm),'Cardmarket öffnen'),rLink('https://www.ebay.de/sch/i.html?_nkw='+encodeURIComponent(qe)+'&LH_Sold=1&LH_Complete=1','eBay: verkauft'),rLink('https://www.ebay.de/sch/i.html?_nkw='+encodeURIComponent(qe),'eBay: Angebote'));
+ panel.append(links);
+ // Personal card picture directly in the selected-card panel (not only the set gallery).
+ const photoArea=document.createElement('div');photoArea.style.cssText='margin-top:18px;padding:14px;border:1px solid #425477;border-radius:14px';
+ const photoHeading=document.createElement('b');photoHeading.textContent='📷 Eigenes Kartenbild';photoArea.append(photoHeading);
+ const photoHelp=document.createElement('p');photoHelp.className='muted';photoHelp.textContent='Hier kannst du ein eigenes Foto dieser Karte anzeigen und auf diesem Gerät speichern.';photoArea.append(photoHelp);
+ const preview=document.createElement('img');preview.alt='Dein Kartenfoto';preview.style.cssText='display:none;width:170px;max-width:100%;height:auto;margin:12px 0;border-radius:10px';photoArea.append(preview);
+ const upload=document.createElement('input');upload.type='file';upload.accept='image/*';upload.style.display='none';photoArea.append(upload);
+ const photoBtn=document.createElement('button');photoBtn.type='button';photoBtn.textContent='Eigenes Bild auswählen';photoBtn.onclick=()=>upload.click();photoArea.append(photoBtn);
+ const photoId='selected::'+String(c.id||c.name+'-'+num);
+ const showPhoto=blob=>{if(!blob)return;preview.src=URL.createObjectURL(blob);preview.style.display='block';photoBtn.textContent='Eigenes Bild ändern'};
+ photoGet(photoId).then(showPhoto);
+ upload.onchange=async()=>{const file=upload.files?.[0];if(!file)return;try{await photoPut(photoId,file);showPhoto(file)}catch(e){alert('Foto konnte nicht gespeichert werden.')}};
+ /* Foto-Notlösung aus der Oberfläche entfernt */
+ const old=document.getElementById('selectedCardPanel');if(old)old.remove();panel.id='selectedCardPanel';box.prepend(panel);panel.scrollIntoView({block:'start',behavior:'smooth'});
+}
+async function catalogSearch(){
+ const p=rParts(),token=++lastSearchToken,out=$('rResults');
+ if(p.game!=='Pokemon'){rSearch();$('rStatus').textContent='Für One Piece gibt es noch keinen Katalog. Bitte Suchlinks verwenden.';return;}
+ if(!p.name&&!p.number&&!p.set){$('rStatus').textContent='Bitte Kartenname, Nummer oder Set eingeben.';return;}
+ if(p.set&&!p.name&&!p.number){await searchSets(p,token,out);return;}
+ const match=p.number.trim().match(/^(\d{1,4})(?:\s*\/\s*(\d{1,4}))?$/);
+ if(p.number&&!match){$('rStatus').textContent='Kartennummer bitte z. B. als 049/128 eingeben.';return;}
+ out.replaceChildren();$('rStatus').textContent='Suche läuft …';$('rSearch').disabled=true;$('rCatalog').disabled=true;
+ const ctrl=new AbortController();const timeout=setTimeout(()=>ctrl.abort(),35000);
+ try{
+  const params=new URLSearchParams();if(p.name)params.set('name',p.name);if(match)params.set('localId',String(Number(match[1])));
+  const response=await fetch('https://api.tcgdex.net/v2/en/cards?'+params,{signal:ctrl.signal});
+  if(!response.ok)throw Error('HTTP '+response.status);
+  let found=await response.json();if(!Array.isArray(found))throw Error('Ungültige Antwort');
+  if(token!==lastSearchToken)return;
+  if(match)found=found.filter(c=>Number(c.localId)===Number(match[1]));
+  if(p.name)found=found.filter(c=>String(c.name||'').toLowerCase().includes(p.name.toLowerCase()));
+  if(!found.length){$('rStatus').textContent='Keine Karten gefunden. Bitte Nummer und Set prüfen.';return;}
+  // The list endpoint does not return set card counts. Fetch card details BEFORE ranking.
+  $('rStatus').textContent=found.length+' Kandidaten gefunden. Prüfe vollständige Kartennummern …';
+  if(p.set){const ids=await findMatchingSetIds(p.set,ctrl.signal);if(ids.length){found=found.filter(c=>ids.some(id=>c.id.toLowerCase().startsWith(id.toLowerCase()+'-')));if(!found.length){$('rStatus').textContent='Keine Karte in diesem Set gefunden. Bitte Setnamen oder Nummer prüfen.';return;}}}
+  const candidates=found.slice(0,24), details=new Array(candidates.length);let cursor=0;
+  async function worker(){while(cursor<candidates.length){const i=cursor++;const c=candidates[i];try{const r=await fetch('https://api.tcgdex.net/v2/en/cards/'+encodeURIComponent(c.id),{signal:ctrl.signal});details[i]=r.ok?await r.json():null;}catch(e){details[i]=null;}}}
+  await Promise.all(Array.from({length:Math.min(6,candidates.length)},()=>worker()));
+  if(token!==lastSearchToken)return;
+  const totalWanted=match&&match[2]?Number(match[2]):null;
+  const ranked=candidates.map((c,i)=>{const d=details[i],total=Number(d?.set?.cardCount?.official||0),local=Number(d?.localId||c.localId),setName=d?.set?.name||c.id.split('-')[0];const exact=totalWanted!==null&&local===Number(match[1])&&total===totalWanted;const setMatch=p.set&&setName.toLowerCase().includes(p.set.toLowerCase());return {c,d,total,setName,exact,score:(exact?10000:0)+(setMatch?1000:0)+(d?10:0)};}).sort((a,b)=>b.score-a.score||a.setName.localeCompare(b.setName));
+  const exactCount=ranked.filter(x=>x.exact).length;
+  const heading=document.createElement('h2');heading.textContent='Suchergebnisse ('+ranked.length+')';out.append(heading);
+  const note=document.createElement('p');note.className='muted';note.textContent=totalWanted!==null?(exactCount?exactCount+' Treffer mit gleicher Nummer '+p.number+' (nicht zwingend dieselbe Karte).':'Kein bestätigter Treffer mit exakt '+p.number+'. Andere Karten mit derselben Anfangsnummer folgen; bitte Set prüfen.'):'Karten nach Set sortiert. Tippe auf eine Karte für die Preislinks.';out.append(note);
+  for(const item of ranked.slice(0,8)){const {c,d,total,setName,exact}=item;const row=document.createElement('div');row.className='card';if(c.image){const img=document.createElement('img');img.className='thumb';img.loading='lazy';img.alt='Bild '+c.name;img.src=c.image+'/low.webp';row.append(img)}const info=document.createElement('div');info.className='info';const title=document.createElement('b');title.textContent=(exact?'✓ Nummer stimmt · ':'')+(d?.name||c.name||'Unbekannt')+' · '+(d?.localId||c.localId||'')+(total?'/'+total:'');info.append(title);const set=document.createElement('div');set.className='muted';set.textContent=setName+' · Set-Code: '+c.id.split('-')[0];info.append(set);const button=document.createElement('button');button.textContent='Diese Karte auswählen';button.onclick=()=>selectedCardLinks(c,d);info.append(button);row.append(info);out.append(row)}
+  $('rStatus').textContent=exactCount?exactCount+' Nummerntreffer (Kartenname und Set bitte prüfen).':'Keine bestätigte vollständige Nummer; weitere Treffer darunter.';
+  if(ranked.length>8){const more=document.createElement('button');more.textContent='Weitere Treffer anzeigen ('+(ranked.length-8)+')';more.onclick=()=>{more.remove();for(const item of ranked.slice(8)){const row=document.createElement('div');row.className='card';const info=document.createElement('div');info.className='info';const title=document.createElement('b');title.textContent=item.c.name+' · '+item.c.localId+(item.total?'/'+item.total:'');info.append(title);const b=document.createElement('button');b.textContent='Diese Karte auswählen';b.onclick=()=>selectedCardLinks(item.c,item.d);info.append(b);row.append(info);out.append(row);}};out.append(more)}
+   if(found.length>candidates.length){const warn=document.createElement('p');warn.className='muted';warn.textContent='Es wurden nur die ersten '+candidates.length+' Kandidaten geprüft. Bitte zusätzlich ein Set eingeben.';out.append(warn)}
+ }catch(e){if(token===lastSearchToken)$('rStatus').textContent='Katalog nicht erreichbar oder Zeitüberschreitung. Bitte erneut versuchen.';}
+ finally{clearTimeout(timeout);if(token===lastSearchToken){$('rSearch').disabled=false;$('rCatalog').disabled=false;}}
+}
+
+// Separate set browser: the catalog set list is queried before loading individual cards.
+function normalizedSetName(s){return String(s||'').toLocaleLowerCase('de').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,' ').trim()}
+function setMatches(set,q){const needle=normalizedSetName(q),hay=normalizedSetName((set.name||'')+' '+(set.id||''));return hay.includes(needle)|| (/(30\s*(jahre|jahr|th|anniversary|jubilaum))/.test(needle)&&/(30\s*(th|anniversary|jubilaum|jahre|jahr))/.test(hay));}
+async function fetchSetIndex(signal){const response=await fetch('https://api.tcgdex.net/v2/en/sets',{signal});if(!response.ok)throw Error('Setliste nicht erreichbar');const data=await response.json();if(!Array.isArray(data))throw Error('Setliste unvollständig');return data;}
+async function findMatchingSetIds(q,signal){try{return (await fetchSetIndex(signal)).filter(x=>setMatches(x,q)).map(x=>x.id)}catch(e){return []}}
+async function searchSets(p,token,out){
+ out.replaceChildren();$('rStatus').textContent='Suche nach Sets …';$('rSearch').disabled=true;$('rCatalog').disabled=true;
+ const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),25000);
+ try{
+  const sets=(await fetchSetIndex(ctrl.signal)).filter(x=>setMatches(x,p.set));
+  if(token!==lastSearchToken)return;
+  if(!sets.length){$('rStatus').textContent='Kein passendes Set im Pokémon-Katalog gefunden. Möglicherweise fehlt diese Ausgabe. Versuche auch den englischen Namen oder Set-Code.';return}
+  $('rStatus').textContent=sets.length+' passende Sets gefunden. Wähle ein Set aus.';
+  const heading=document.createElement('h2');heading.textContent='Passende Serien / Sets';out.append(heading);
+  for(const set of sets.slice(0,70)){
+   const row=document.createElement('div');row.className='card';
+   if(set.logo){const img=document.createElement('img');img.className='thumb';img.loading='lazy';img.alt='Setlogo '+set.name;img.src=set.logo+'.webp';row.append(img)}
+   const info=document.createElement('div');info.className='info';const title=document.createElement('b');title.textContent=set.name||set.id;info.append(title);
+   const meta=document.createElement('div');meta.className='muted';meta.textContent='Set-Code: '+set.id;info.append(meta);
+   const button=document.createElement('button');button.textContent='Karten dieses Sets anzeigen';button.onclick=()=>showSetCards(set);info.append(button);row.append(info);out.append(row);
+  }
+ }catch(e){if(token===lastSearchToken)$('rStatus').textContent='Set-Katalog nicht erreichbar. Bitte Verbindung prüfen und erneut versuchen.'}
+ finally{clearTimeout(timeout);if(token===lastSearchToken){$('rSearch').disabled=false;$('rCatalog').disabled=false}}
+}
+// Open Cardmarket directly on selecting a set card, without scrolling the app.
+function openSetCardMarket(c,setName){
+ const number=/^mew$/i.test(String(c.name||'').trim())&&/^[RGB]$/i.test(String(c.localId||''))?String(c.localId).toUpperCase()+'/RGB':String(c.localId||'');
+ const query=[c.name,number,setName].filter(Boolean).join(' ');
+ const url='https://www.cardmarket.com/de/Pokemon/Products/Search?searchMode=v2&searchString='+encodeURIComponent(query);
+ // Same-tab navigation is reliable on Android/Brave PWAs and preserves the back stack.
+ window.location.assign(url);
+}
+// Set cards: load detail records for artwork, because the set listing can omit image URLs.
+function cardImage(img,alt,extras=[]){
+ const el=document.createElement('img');el.className='set-art';el.loading='lazy';el.alt=alt;
+ const base=img?img.replace(/\/(low|high)\.(webp|png|jpg)$/i,''):'';let attempt=0;
+ const sources=[...(base?[base+'/low.webp',base+'/low.png',base+'/high.webp',base+'/high.png']:[]),...extras];
+ if(!sources.length){el.classList.add('hidden');return el}
+ el.onerror=()=>{attempt++;if(attempt<sources.length)el.src=sources[attempt];else{el.classList.add('hidden');el.parentElement?.classList.add('no-art')}};
+ el.src=sources[0];return el;
+}
+// Individually matched Classic Collection image references, sourced from TCGJoin's 30th Celebration catalog.
+// Use name AND original number: numbers 11 and 106 occur on multiple distinct cards.
+const CLASSIC_ART_RECORDS=[["Charizard", 4, 714372], ["Delcatty", 5, 716156], ["Genesect EX", 11, 716158], ["Metagross", 11, 716157], ["Misty", 18, 716159], ["Dark Tyranitar", 19, 716160], ["Sneasel", 25, 716161], ["Pikachu & Zekrom", 33, 714373], ["Greninja BREAK", 41, 716162], ["Uxie", 43, 716163], ["Crobat G", 47, 716191], ["Raikou", 50, 716192], ["Buzzwole GX", 57, 716193], ["Pikachu", 58, 716194], ["Erika", 69, 716195], ["Rayquaza EX", 85, 716196], ["Solgaleo GX", 89, 716197], ["Gengar", 94, 716198], ["Darkrai & Cresselia Legend (Top)", 99, 716199], ["Darkrai & Cresselia Legend (Bottom)", 100, 716200], ["N", 101, 716202], ["Shining Celebi", 106, 716205], ["Palkia LV.X", 106, 716203], ["M Gardevoir EX", 106, 716204], ["Scizor ex", 108, 716206], ["Mew VMAX", 114, 716207], ["Arceus VSTAR", 123, 716208], ["Zacian V", 138, 716209], ["Lugia", 149, 714386], ["Magikarp", 203, 716210]];
+function classicImageCandidates(set,c){
+ const identity=(set.id+' '+set.name).toLowerCase();
+ if(!(/classic/.test(identity)&&/30|anniversary|celebration/.test(identity)))return [];
+ const num=Number(String(c.localId||'').match(/\d+/)?.[0]);
+ const normalize=v=>String(v||'').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'');
+ const name=normalize(c.name);
+ const match=CLASSIC_ART_RECORDS.find(([label,n])=>n===num&&(name.includes(normalize(label))||normalize(label).includes(name)));
+ if(!match)return [];
+ const product=match[2],direct='https://tcgplayer-cdn.tcgplayer.com/product/'+product+'_200w.jpg';
+ return [
+  'https://api.tcgjoin.com/cards/image-proxy?url='+encodeURIComponent(direct),
+  direct
+ ];
+}
+function isClassicSet(set){return /classic/.test((set.id+' '+set.name).toLowerCase())&&/30|anniversary|celebration/.test((set.id+' '+set.name).toLowerCase())}
+const cardPhotoDB=(()=>{let promise;return ()=>promise||(promise=new Promise((resolve,reject)=>{const r=indexedDB.open('cardpilot-card-photos',1);r.onupgradeneeded=()=>r.result.createObjectStore('photos');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)}))})();
+async function photoGet(key){try{const db=await cardPhotoDB();return await new Promise(resolve=>{const r=db.transaction('photos').objectStore('photos').get(key);r.onsuccess=()=>resolve(r.result||null);r.onerror=()=>resolve(null)})}catch{return null}}
+async function photoPut(key,file){const db=await cardPhotoDB();return new Promise((resolve,reject)=>{const r=db.transaction('photos','readwrite').objectStore('photos').put(file,key);r.onsuccess=()=>resolve();r.onerror=()=>reject(r.error)})}
+function photoKey(set,c){return String(set.id)+'::'+String(c.id||c.name+'-'+c.localId)}
+function attachPersonalImage(set,c,artBox,tile){
+ const key=photoKey(set,c);photoGet(key).then(blob=>{if(!blob||!artBox.isConnected)return;const u=URL.createObjectURL(blob);artBox.querySelector('img.set-art')?.remove();const im=document.createElement('img');im.className='set-art';im.alt='Eigenes Kartenfoto';im.src=u;artBox.prepend(im);artBox.classList.remove('no-art')});
+ const pick=document.createElement('input');pick.type='file';pick.accept='image/*';pick.className='hidden';
+ const btn=document.createElement('button');btn.type='button';btn.textContent='Eigenes Bild';btn.className='card-photo-button';btn.onclick=e=>{e.stopPropagation();pick.click()};
+ pick.onchange=async()=>{const file=pick.files?.[0];if(!file)return;try{await photoPut(key,file);const u=URL.createObjectURL(file);artBox.querySelector('img.set-art')?.remove();const im=document.createElement('img');im.className='set-art';im.alt='Eigenes Kartenfoto';im.src=u;artBox.prepend(im);artBox.classList.remove('no-art');btn.textContent='Bild ändern'}catch(e){alert('Bild konnte nicht gespeichert werden.')} };tile.append(pick,btn)
+}
+async function showSetCards(set){
+ const token=++lastSearchToken,out=$('rResults');out.replaceChildren();$('rStatus').textContent='Lade Karten aus '+set.name+' …';$('rSearch').disabled=true;$('rCatalog').disabled=true;
+ const ctrl=new AbortController(),timeout=setTimeout(()=>ctrl.abort(),55000);
+ try{
+  const response=await fetch('https://api.tcgdex.net/v2/en/sets/'+encodeURIComponent(set.id),{signal:ctrl.signal});if(!response.ok)throw Error('Set nicht verfügbar');
+  const data=await response.json();if(token!==lastSearchToken)return;
+  const items=Array.isArray(data.cards)?data.cards:[];
+  if(!items.length){$('rStatus').textContent='Für dieses Set sind keine Karten im Katalog hinterlegt.';return}
+  $('rSet').value=data.name||set.name;
+  const title=document.createElement('h2');title.textContent=(data.name||set.name)+' ('+items.length+' Karten)';out.append(title);
+  const note=document.createElement('p');note.className='muted';note.textContent='Karte antippen → direkt zu Cardmarket. Fehlende Bilder: Über „Eigenes Bild“ kannst du ein Foto dauerhaft auf diesem Gerät hinterlegen. Karte antippen → Cardmarket.';out.append(note);
+  const filter=document.createElement('input');filter.placeholder='Im Set suchen: Name oder Nummer (z. B. 006)';filter.setAttribute('aria-label','Karten innerhalb des Sets filtern');out.append(filter);
+  const grid=document.createElement('div');grid.className='set-card-grid';out.append(grid);
+  const official=Number(data.cardCount?.official||0);
+  const rows=items.map(c=>{
+    const tile=document.createElement('button');tile.type='button';tile.className='set-tile';
+    const artBox=document.createElement('div');artBox.className='set-artbox';const placeholder=document.createElement('span');placeholder.className='art-placeholder';placeholder.textContent='Bild nicht verfügbar';artBox.append(placeholder);
+    const fallback=classicImageCandidates(set,c);if(isClassicSet(set)){if(fallback.length)artBox.prepend(cardImage('', 'Kartenbild '+c.name,fallback));else artBox.classList.add('no-art')}else if(c.image)artBox.prepend(cardImage(c.image,'Kartenbild '+c.name));
+    const label=document.createElement('b');const rgb=/^mew$/i.test(String(c.name||'').trim())&&/^[RGB]$/i.test(String(c.localId||''));label.textContent=(c.name||'Karte')+' · '+(rgb?String(c.localId).toUpperCase()+'/RGB':(c.localId||'')+(official?'/'+official:''));
+    tile.append(artBox,label);attachPersonalImage(set,c,artBox,tile);tile.onclick=()=>openSetCardMarket(c,data.name||set.name);grid.append(tile);
+    return {c,tile,artBox};
+  });
+  filter.oninput=()=>{const q=filter.value.trim().toLowerCase();for(const {c,tile} of rows)tile.classList.toggle('hidden',!!q&&!((c.name||'')+' '+(c.localId||'')).toLowerCase().includes(q))};
+  $('rStatus').textContent=items.length+' Karten geladen. Lade Bilder nach …';
+  // Image metadata is sometimes absent from the set list. Retrieve individual cards in parallel.
+  let cursor=0,images=0;
+  async function worker(){while(cursor<rows.length){if(token!==lastSearchToken)return;const idx=cursor++,row=rows[idx];if(isClassicSet(set)){if(classicImageCandidates(set,row.c).length)images++;continue}if(row.c.image){images++;continue}try{
+    let detail=null;
+    for(const lang of ['en','fr']){const r=await fetch('https://api.tcgdex.net/v2/'+lang+'/cards/'+encodeURIComponent(row.c.id),{signal:ctrl.signal});if(r.ok){const d=await r.json();if(d.image){detail=d;break}}}
+    if(token!==lastSearchToken)return;
+    if(detail?.image && !(await photoGet(photoKey(set,row.c)))){row.artBox.querySelector('img.set-art')?.remove();row.artBox.prepend(cardImage(detail.image,'Kartenbild '+row.c.name));images++}else if(!row.artBox.querySelector('img.set-art'))row.artBox.classList.add('no-art');
+   }catch(e){row.artBox.classList.add('no-art')}
+  }}
+  await Promise.all(Array.from({length:Math.min(6,rows.length)},()=>worker()));
+  if(token===lastSearchToken)$('rStatus').textContent=items.length+' Karten geladen. TCGdex-Bildquellen für '+images+' Karten gefunden. Classic-Bildserver können Bilder blockieren; eigene Fotos sind möglich.'+(images<items.length?' Für manche Karten stellt der Katalog kein Bild bereit.':'');
+ }catch(e){if(token===lastSearchToken)$('rStatus').textContent='Karten dieses Sets konnten nicht vollständig geladen werden. Bitte erneut versuchen.'}
+ finally{clearTimeout(timeout);if(token===lastSearchToken){$('rSearch').disabled=false;$('rCatalog').disabled=false}}
+}
+$('rSearch').onclick=catalogSearch;$('rCatalog').onclick=catalogSearch;
+
+// CardPilot 4.9: stable two-pass OCR, card-relative crop and single result lock.
+(function(){
+ const $=id=>document.getElementById(id),status=$('scanStatus'),result=$('scanResult'),detected=$('scanDetected'),preview=$('scanPreview'),video=$('liveVideo'),area=$('liveArea');
+ // Place the live recognition feedback above the camera so no scrolling is required.
+ area.parentNode.insertBefore(status,area);area.parentNode.insertBefore(result,area);
+ let stream=null,timer=null,busy=false,worker=null,loader=null,track=null,torchOn=false,lastCandidate='',candidateCount=0,zoomLevel=1,locked=false,session=0,scanPass=0,autoFinding=false,fastMode=true;let candidateAt=0;
+ function loadOCR(){if(window.Tesseract)return Promise.resolve();if(loader)return loader;loader=new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=resolve;sc.onerror=()=>{loader=null;reject(Error('Texterkennung konnte nicht geladen werden (Internet prüfen)'))};document.head.append(sc)});return loader;}
+ async function getWorker(){await loadOCR();if(!worker)worker=await window.Tesseract.createWorker('eng');return worker;}
+ function extractNumber(txt){const clean=txt.replace(/[|\\]/g,'/').replace(/([0-9OoIlSB]{1,4})\s*[/\s]\s*([0-9OoIlSB]{2,4})/g,(m,a,b)=>a.replace(/[Oo]/g,'0').replace(/[Il]/g,'1').replace(/S/g,'5').replace(/B/g,'8')+'/'+b.replace(/[Oo]/g,'0').replace(/[Il]/g,'1').replace(/S/g,'5').replace(/B/g,'8'));const op=clean.match(/\bOP\s*(\d{2})\s*[-–]\s*(\d{3})\b/i);if(op)return 'OP'+op[1]+'-'+op[2];const m=[...clean.matchAll(/(?:^|[^\d])(\d{1,4})\s*[/]\s*(\d{2,4})(?!\d)/gm)];return m.map(x=>x[1].padStart(3,'0')+'/'+x[2]).find(x=>Number(x.split('/')[0])>0&&Number(x.split('/')[0])<=Number(x.split('/')[1]))||'';}
+ function lockResult(n){
+  locked=true;detected.value=n;result.style.display='block';
+  status.textContent='✓ Erkannt: '+n+' · Scan beendet. Bitte Kartenbild und Set prüfen.';
+  stop(true);$('scanCamera').textContent='↻ Nächste Karte scannen';$('liveOnce').textContent='↻ Neue Karte scannen';
+  if($('scanAutoFind').checked&&!autoFinding){autoFinding=true;setTimeout(()=>{autoFinding=false; if(locked&&detected.value===n)$('scanFind').click();},120);}
+ }
+ function show(n,live=false){
+  if(locked)return;
+  if(n){
+   if(live){const now=Date.now();candidateCount=(n===lastCandidate&&now-candidateAt<6500)?candidateCount+1:1;lastCandidate=n;
+    result.style.display='block';detected.value=n;
+    if(candidateCount>=2 && Date.now()-candidateAt<6500){lockResult(n);}else{
+     candidateAt=Date.now();status.textContent='Nummer '+n+' erkannt – Bestätigung läuft …';
+   }
+   }else{result.style.display='block';detected.value=n;status.textContent='Mögliche Nummer: '+n+'. Bitte prüfen.';}
+  }else{status.textContent=lastCandidate?'Mögliche Nummer '+lastCandidate+' – bitte ruhig halten.':'Noch keine Nummer erkannt. Karte ruhig halten.';}
+ }
+ async function recognize(source,live=false){
+  if(busy||locked)return;busy=true;const activeSession=session;
+  try{if(!lastCandidate)status.textContent='Karte wird geprüft …';const w=await getWorker();
+   if(live&&(activeSession!==session||!stream||locked))return;
+   const sources=live?makeRegions():[source];let n='',raw='';
+   for(const src of sources){const out=await w.recognize(src);if(live&&(activeSession!==session||!stream||locked))return;
+    raw+='\n'+(out.data.text||'');n=extractNumber(out.data.text||'');if(n)break;}
+   if(n)show(n,live);
+   else if(live){status.textContent=lastCandidate?'Nummer '+lastCandidate+' erkannt – Bestätigung ausstehend.':'Nummer noch nicht lesbar. Karte etwas näher halten oder auf „Prüfen“ tippen.';}
+   else{const lines=raw.split(/[\r\n]+/).map(x=>x.trim()).filter(Boolean);
+    const candidate=lines.find(x=>/^[A-Za-zÄÖÜäöüßéÉ\- ]{4,25}$/.test(x)&&!/(pokemon|fähigkeit|trainer|energie|retreat|damage|stage|basic|illustrat)/i.test(x));
+    if(candidate){result.style.display='block';detected.value=candidate;status.textContent='Möglicher Kartenname: '+candidate+'. Bitte prüfen.';}else show('',false);}
+  }catch(e){if(!live||activeSession===session)status.textContent='Erkennung fehlgeschlagen: '+e.message;}
+  finally{busy=false;}
+ }
+ function makeRegions(){
+  if(!stream||!video.videoWidth)return [];
+  const vw=video.videoWidth,vh=video.videoHeight;
+  // Camera video is usually portrait; the card is centered and smaller than the frame.
+  // Sample the lower-left portion of the centered card, NOT the frame's lower-left corner.
+  // On each pass use the SAME crop, preventing jumping between unrelated text areas.
+  const landscape=vw>vh;
+  const box=landscape?[.25,.56,.50,.40]:[.19,.55,.62,.42];
+  const [x,y,w,h]=box;
+  const cv=document.createElement('canvas');cv.width=850;
+  cv.height=Math.min(650,Math.max(220,Math.round(cv.width*(vh*h)/(vw*w))));
+  const ctx=cv.getContext('2d',{willReadFrequently:true});
+  ctx.drawImage(video,vw*x,vh*y,vw*w,vh*h,0,0,cv.width,cv.height);
+  // Second crop focuses on the very bottom where the printed collector number usually sits.
+  const bottom=document.createElement('canvas');bottom.width=1000;bottom.height=280;
+  bottom.getContext('2d').drawImage(video,vw*.16,vh*.76,vw*.68,vh*.19,0,0,1000,280);
+  return [bottom,cv];
+ }
+ async function runFrame(){if(locked)return;if(busy)return;if(stream&&video.videoWidth)await recognize(null,true);else status.textContent='Warte auf Kamerabild …';}
+ function stop(preserve=false){session++;if(timer){clearInterval(timer);timer=null;}if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}track=null;torchOn=false;$('liveTorch').style.display='none';video.srcObject=null;area.style.display='none';$('scanCamera').textContent='📹 Live-Kamera starten';if(!preserve){locked=false;candidateCount=0;lastCandidate='';$('liveOnce').textContent='🔎 Prüfen';}}
+ $('scanCamera').onclick=async()=>{if(stream){stop();return;}locked=false;candidateCount=0;lastCandidate='';scanPass=0;detected.value='';$('liveOnce').textContent='🔎 Prüfen';if(!navigator.mediaDevices?.getUserMedia){status.textContent='Kamera in diesem Browser nicht verfügbar.';return;}try{status.textContent='Kamera wird geöffnet …';stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:720},height:{ideal:1280},aspectRatio:{ideal:0.75}}});track=stream.getVideoTracks()[0];video.srcObject=stream;await video.play();area.style.display='block';preview.style.display='none';result.style.display='block';$('scanCamera').textContent='■ Kamera stoppen';const caps=track.getCapabilities?.()||{};if(caps.focusMode?.includes('continuous')){try{await track.applyConstraints({advanced:[{focusMode:'continuous'}]});}catch(e){}}if(caps.torch)$('liveTorch').style.display='inline-block';status.textContent='Kamera aktiv. Gesamte Karte im Bild halten; untere Kartenbereiche werden automatisch geprüft …';getWorker().catch(e=>{status.textContent='OCR konnte nicht geladen werden: '+e.message});if(!stream)return;timer=setInterval(()=>{if(!busy&&!locked&&stream)runFrame()},700);await runFrame();}catch(e){stop();status.textContent='Kamera oder Texterkennung nicht verfügbar: '+e.message;}};
+ $('liveTorch').onclick=async()=>{if(!track)return;try{torchOn=!torchOn;await track.applyConstraints({advanced:[{torch:torchOn}]});$('liveTorch').textContent=torchOn?'🔦 Licht aus':'🔦 Licht';}catch(e){torchOn=false;status.textContent='Kameralicht wird vom Browser nicht unterstützt.';}};
+ $('liveStop').onclick=()=>stop();$('liveOnce').onclick=()=>{if(locked){$('scanCamera').click();}else runFrame();};
+ $('liveZoom').onclick=async()=>{if(!track)return;const caps=track.getCapabilities?.()||{};if(!caps.zoom){status.textContent='Kamera-Zoom wird vom Browser nicht unterstützt.';return;}const max=Math.min(caps.zoom.max||2,3);zoomLevel=zoomLevel>=max?1:Math.min(max,zoomLevel+0.5);try{await track.applyConstraints({advanced:[{zoom:zoomLevel}]});$('liveZoom').textContent='🔍 Zoom '+zoomLevel+'×';}catch(e){status.textContent='Zoom konnte nicht eingestellt werden.';}};
+ $('liveFocus').onclick=async()=>{if(!track)return;const caps=track.getCapabilities?.()||{};try{if(caps.focusMode?.includes('continuous')){await track.applyConstraints({advanced:[{focusMode:'continuous'}]});status.textContent='Kontinuierlicher Autofokus aktiviert.';}else status.textContent='Manueller Autofokus wird hier nicht unterstützt.';}catch(e){status.textContent='Fokuseinstellung nicht verfügbar.';}};
+
+ async function scanFile(file){if(!file)return;stop();result.style.display='block';preview.src=URL.createObjectURL(file);preview.style.display='block';await recognize(file);}
+ $('scanScreen').onclick=()=>$('scanScreenFile').click();$('scanScreenFile').onchange=()=>scanFile($('scanScreenFile').files?.[0]);$('scanCameraFile').onchange=()=>scanFile($('scanCameraFile').files?.[0]);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop()});document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.tab!=='research')stop()}));
+ $('scanFind').onclick=()=>{const n=detected.value.trim();if(!n){status.textContent='Bitte Kartennummer oder Kartenname eingeben.';return;}stop(true);$('rGame').value=/^OP\d{2}[-–]\d{3}$/i.test(n)?'One Piece':$('rGame').value;$('rQuery').value=/^\d{1,4}\s*\/\s*\d{1,4}$/.test(n)?'':n;$('rSet').value='';$('rNumber').value=/^(?:\d{1,4}\s*\/\s*\d{1,4}|OP\d{2}[-–]\d{3})$/i.test(n)?n:'';if($('rGame').value==='One Piece')rSearch();else catalogSearch();/* Keep scanner and recognized number visible; results are available below. */};
+})();
+</script></body></html>

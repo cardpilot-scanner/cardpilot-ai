@@ -79,13 +79,13 @@ input,select,textarea{background:#f8fbff!important;color:#263755!important;borde
 #liveArea .actions{margin-top:5px!important}
 #liveArea .actions button{padding:8px 4px!important}
 @media(max-width:430px){#liveArea .scanner-view{height:clamp(155px,25dvh,210px)!important}}
-</style></head><body><header><div style="max-width:850px;margin:auto"><h1><span class="brand-icon"><img src="icon.svg" alt="" style="width:40px;height:40px;display:block"></span> CardPilot <span class="brand-ai">AI</span></h1><div class="sub">Dein Kartenbestand. Deine Verkäufe. Deine Zahlen. · Version 4.8</div></div></header><main><nav><button class="active" data-tab="dashboard">Übersicht</button><button data-tab="add">+ Karte</button><button data-tab="inventory">Bestand</button><button data-tab="research">🔎 Preischeck</button><button data-tab="settings">Einstellungen</button></nav>
+</style><style id="scanner49">#quickScanPanel h2{font-size:17px!important}#quickScanPanel>.actions{margin:4px 0!important}#scanStatus{min-height:32px}#scanResult{scroll-margin-top:12px}#liveArea .scanner-view{height:clamp(175px,28dvh,245px)!important}#scanDetected{font-variant-numeric:tabular-nums}</style></head><body><header><div style="max-width:850px;margin:auto"><h1><span class="brand-icon"><img src="icon.svg" alt="" style="width:40px;height:40px;display:block"></span> CardPilot <span class="brand-ai">AI</span></h1><div class="sub">Dein Kartenbestand. Deine Verkäufe. Deine Zahlen. · Version 4.9</div></div></header><main><nav><button class="active" data-tab="dashboard">Übersicht</button><button data-tab="add">+ Karte</button><button data-tab="inventory">Bestand</button><button data-tab="research">🔎 Preischeck</button><button data-tab="settings">Einstellungen</button></nav>
 <section id="dashboard"><div class="grid"><div class="metric"><small>Karten im Bestand</small><strong id="count">0</strong></div><div class="metric"><small>Einkaufswert Bestand</small><strong id="stockcost">0,00 €</strong></div><div class="metric"><small>Verkaufsumsatz</small><strong id="revenue">0,00 €</strong></div><div class="metric"><small>Ergebnis Verkäufe</small><strong id="profit">0,00 €</strong></div></div><div class="panel"><h2>Schnellstart</h2><p class="muted">Fotografiere eine Karte, erfasse ihre Daten und berechne deinen Verkaufserlös. Der Scanner erkennt Text und Kartennummern, aber noch keine Kartenmotive. Preise werden nicht automatisch abgerufen.</p><button class="primary" onclick="tab('add')">Erste Karte erfassen</button></div><div class="panel"><h2>Zuletzt erfasst</h2><div id="recent"></div></div></section>
 <section id="add" class="hidden"><div class="panel"><h2 id="formtitle">Karte erfassen</h2><form id="cardform"><input type="hidden" id="editid"><label for="photo">Kartenfoto (Kamera oder Galerie)</label><input id="photo" type="file" accept="image/*" capture="environment"><img id="preview" class="thumb hidden" alt="Fotovorschau" style="margin-top:10px"><label for="game">Kartenspiel</label><select id="game"><option>Pokémon</option><option>One Piece</option></select><label for="name">Kartenname *</label><input id="name" required maxlength="140" placeholder="z. B. Pikachu"><div class="grid formgrid"><div><label for="number">Kartennummer</label><input id="number" placeholder="z. B. 025/165"></div><div><label for="set">Set / Edition</label><input id="set" placeholder="Setname"></div><div><label for="language">Sprache</label><select id="language"><option>Deutsch</option><option>Englisch</option><option>Japanisch</option><option>Chinesisch</option><option>Koreanisch</option><option>Andere</option></select></div><div><label for="condition">Zustand</label><select id="condition"><option>Near Mint</option><option>Excellent</option><option>Good</option><option>Played</option><option>Poor</option><option>Versiegelt</option></select></div><div><label for="buy">Einkauf (€)</label><input id="buy" inputmode="decimal" type="number" min="0" step="0.01" value="0"></div><div><label for="market">CM-Referenzpreis (€)</label><input id="market" inputmode="decimal" type="number" min="0" step="0.01" placeholder="manuell"></div><div><label for="sell">Verkauf (€)</label><input id="sell" inputmode="decimal" type="number" min="0" step="0.01" placeholder="geplant/realisiert"></div><div><label for="shipping">Eigene Versandkosten (€)</label><input id="shipping" inputmode="decimal" type="number" min="0" step="0.01" value="0"></div></div><label for="status">Status</label><select id="status"><option value="stock">Im Bestand</option><option value="sold">Verkauft</option></select><label for="buyer">Käufer / Bestellreferenz (optional)</label><input id="buyer" maxlength="120"><label for="notes">Notizen</label><textarea id="notes" placeholder="z. B. Whatnot-Losnummer, Kartenvariante"></textarea><div class="panel" style="background:#10182b"><strong>Gewinnvorschau (vor Steuern)</strong><div id="estimate" style="font-size:23px;margin:8px 0">–</div><small>Berechnung mit deinen Gebühreneinstellungen. Ohne tatsächlichen Verkaufspreis keine Berechnung. Keine Steuerberatung.</small></div><div class="actions"><button class="primary" type="submit">Karte speichern</button><button type="button" id="cancel">Zurücksetzen</button></div></form></div></section>
 <section id="inventory" class="hidden"><div class="panel"><h2>Deine Karten</h2><input id="search" placeholder="Name, Nummer oder Set suchen"><div class="grid formgrid"><div><label>Spiel</label><select id="filtergame"><option value="">Alle</option><option>Pokémon</option><option>One Piece</option></select></div><div><label>Status</label><select id="filterstatus"><option value="">Alle</option><option value="stock">Im Bestand</option><option value="sold">Verkauft</option></select></div></div><div id="cards"></div></div></section>
 <section id="research" class="hidden">
 <div class="panel" id="quickScanPanel" style="border:1px solid #5076af">
-<h2>📷 Karten-Scanner · Live 4.8</h2>
+<h2>📷 Karten-Scanner · Live 4.9</h2>
 
 <div class="actions"><button type="button" id="scanCamera" class="primary">📹 Live-Kamera starten</button><button type="button" id="scanScreen">🖼️ Screenshot scannen</button></div>
 <div id="liveArea" style="display:none;margin:12px 0"><div class="scanner-view"><video id="liveVideo" autoplay muted playsinline class="scanner-video"></video><div class="scan-guide"><div class="scan-guide-card"><div class="scan-beam"></div><span>Bitte Karte hier ausrichten</span></div></div></div><div class="actions"><button type="button" id="liveOnce" class="primary">🔎 Prüfen</button><button type="button" id="liveTorch" style="display:none">🔦 Licht</button><button type="button" id="liveStop">■ Stoppen</button></div><div class="actions"><button type="button" id="liveZoom">🔍 Zoom 1×</button><button type="button" id="liveFocus">◎ Fokus</button></div></div><input type="file" id="scanCameraFile" accept="image/*" capture="environment" hidden><input type="file" id="scanScreenFile" accept="image/*" hidden>
@@ -168,9 +168,9 @@ async function catalogSearch(){
   // The list endpoint does not return set card counts. Fetch card details BEFORE ranking.
   $('rStatus').textContent=found.length+' Kandidaten gefunden. Prüfe vollständige Kartennummern …';
   if(p.set){const ids=await findMatchingSetIds(p.set,ctrl.signal);if(ids.length){found=found.filter(c=>ids.some(id=>c.id.toLowerCase().startsWith(id.toLowerCase()+'-')));if(!found.length){$('rStatus').textContent='Keine Karte in diesem Set gefunden. Bitte Setnamen oder Nummer prüfen.';return;}}}
-  const candidates=found.slice(0,40), details=new Array(candidates.length);let cursor=0;
+  const candidates=found.slice(0,24), details=new Array(candidates.length);let cursor=0;
   async function worker(){while(cursor<candidates.length){const i=cursor++;const c=candidates[i];try{const r=await fetch('https://api.tcgdex.net/v2/en/cards/'+encodeURIComponent(c.id),{signal:ctrl.signal});details[i]=r.ok?await r.json():null;}catch(e){details[i]=null;}}}
-  await Promise.all(Array.from({length:Math.min(8,candidates.length)},()=>worker()));
+  await Promise.all(Array.from({length:Math.min(6,candidates.length)},()=>worker()));
   if(token!==lastSearchToken)return;
   const totalWanted=match&&match[2]?Number(match[2]):null;
   const ranked=candidates.map((c,i)=>{const d=details[i],total=Number(d?.set?.cardCount?.official||0),local=Number(d?.localId||c.localId),setName=d?.set?.name||c.id.split('-')[0];const exact=totalWanted!==null&&local===Number(match[1])&&total===totalWanted;const setMatch=p.set&&setName.toLowerCase().includes(p.set.toLowerCase());return {c,d,total,setName,exact,score:(exact?10000:0)+(setMatch?1000:0)+(d?10:0)};}).sort((a,b)=>b.score-a.score||a.setName.localeCompare(b.setName));
@@ -294,7 +294,7 @@ async function showSetCards(set){
 }
 $('rSearch').onclick=catalogSearch;$('rCatalog').onclick=catalogSearch;
 
-// CardPilot 4.8: stop live OCR immediately after first plausible number; user starts next card explicitly.
+// CardPilot 4.9: stable two-pass OCR, card-relative crop and single result lock.
 (function(){
  const $=id=>document.getElementById(id),status=$('scanStatus'),result=$('scanResult'),detected=$('scanDetected'),preview=$('scanPreview'),video=$('liveVideo'),area=$('liveArea');
  // Place the live recognition feedback above the camera so no scrolling is required.
@@ -312,21 +312,23 @@ $('rSearch').onclick=catalogSearch;$('rCatalog').onclick=catalogSearch;
  function show(n,live=false){
   if(locked)return;
   if(n){
-   if(live){candidateCount=n===lastCandidate?candidateCount+1:1;lastCandidate=n;
-    result.style.display='block';detected.value=n;status.textContent='Mögliche Nummer '+n+' – zweite Prüfung zur Bestätigung …';
-    lockResult(n); // Ein gültiger OCR-Treffer beendet die automatische Schleife sofort.
+   if(live){const now=Date.now();candidateCount=(n===lastCandidate&&now-candidateAt<6500)?candidateCount+1:1;lastCandidate=n;
+    result.style.display='block';detected.value=n;
+    if(candidateCount>=2 && Date.now()-candidateAt<6500){lockResult(n);}else{
+     candidateAt=Date.now();status.textContent='Nummer '+n+' erkannt – Bestätigung läuft …';
+   }
    }else{result.style.display='block';detected.value=n;status.textContent='Mögliche Nummer: '+n+'. Bitte prüfen.';}
   }else{status.textContent=lastCandidate?'Mögliche Nummer '+lastCandidate+' – bitte ruhig halten.':'Noch keine Nummer erkannt. Karte ruhig halten.';}
  }
  async function recognize(source,live=false){
   if(busy||locked)return;busy=true;const activeSession=session;
-  try{status.textContent='Karte wird geprüft …';const w=await getWorker();
+  try{if(!lastCandidate)status.textContent='Karte wird geprüft …';const w=await getWorker();
    if(live&&(activeSession!==session||!stream||locked))return;
    const sources=live?makeRegions():[source];let n='',raw='';
    for(const src of sources){const out=await w.recognize(src);if(live&&(activeSession!==session||!stream||locked))return;
     raw+='\n'+(out.data.text||'');n=extractNumber(out.data.text||'');if(n)break;}
    if(n)show(n,live);
-   else if(live){status.textContent=lastCandidate?'Mögliche Nummer '+lastCandidate+' – weitere Prüfung läuft.':'Noch keine sichere Nummer. Karte ruhig halten.';}
+   else if(live){status.textContent=lastCandidate?'Nummer '+lastCandidate+' erkannt – Bestätigung ausstehend.':'Noch keine sichere Nummer. Karte ruhig halten.';}
    else{const lines=raw.split(/[\r\n]+/).map(x=>x.trim()).filter(Boolean);
     const candidate=lines.find(x=>/^[A-Za-zÄÖÜäöüßéÉ\- ]{4,25}$/.test(x)&&!/(pokemon|fähigkeit|trainer|energie|retreat|damage|stage|basic|illustrat)/i.test(x));
     if(candidate){result.style.display='block';detected.value=candidate;status.textContent='Möglicher Kartenname: '+candidate+'. Bitte prüfen.';}else show('',false);}
@@ -336,22 +338,21 @@ $('rSearch').onclick=catalogSearch;$('rCatalog').onclick=catalogSearch;
  function makeRegions(){
   if(!stream||!video.videoWidth)return [];
   const vw=video.videoWidth,vh=video.videoHeight;
-  // Match the displayed contain-fit video: crop the bottom of the actual card,
-  // not the bottom of the full camera frame. Central portrait-card ROI.
-  const portrait=vw>vh;
-  // The camera shows the complete card centrally. The number is at the bottom LEFT of the card, not at the bottom of the full video.
-  // Alternate narrow and wider regions to account for framing differences.
-  const boxes=portrait?[[.27,.72,.27,.19],[.23,.65,.35,.27]]:[[.12,.70,.43,.23],[.09,.63,.53,.30]];
-  const [x,y,w,h]=boxes[scanPass++%boxes.length];
-  const cv=document.createElement('canvas');cv.width=650;
-  cv.height=Math.max(180,Math.round(cv.width*(vh*h)/(vw*w)));
+  // Camera video is usually portrait; the card is centered and smaller than the frame.
+  // Sample the lower-left portion of the centered card, NOT the frame's lower-left corner.
+  // On each pass use the SAME crop, preventing jumping between unrelated text areas.
+  const landscape=vw>vh;
+  const box=landscape?[.27,.65,.31,.26]:[.23,.64,.35,.25];
+  const [x,y,w,h]=box;
+  const cv=document.createElement('canvas');cv.width=850;
+  cv.height=Math.min(650,Math.max(220,Math.round(cv.width*(vh*h)/(vw*w))));
   const ctx=cv.getContext('2d',{willReadFrequently:true});
   ctx.drawImage(video,vw*x,vh*y,vw*w,vh*h,0,0,cv.width,cv.height);
   return [cv];
  }
- async function runFrame(){if(locked)return;if(busy){status.textContent='Vorherige Auswertung läuft noch …';return;}if(stream&&video.videoWidth)await recognize(null,true);else status.textContent='Warte auf Kamerabild …';}
+ async function runFrame(){if(locked)return;if(busy)return;if(stream&&video.videoWidth)await recognize(null,true);else status.textContent='Warte auf Kamerabild …';}
  function stop(preserve=false){session++;if(timer){clearInterval(timer);timer=null;}if(stream){stream.getTracks().forEach(t=>t.stop());stream=null;}track=null;torchOn=false;$('liveTorch').style.display='none';video.srcObject=null;area.style.display='none';$('scanCamera').textContent='📹 Live-Kamera starten';if(!preserve){locked=false;candidateCount=0;lastCandidate='';$('liveOnce').textContent='🔎 Prüfen';}}
- $('scanCamera').onclick=async()=>{if(stream){stop();return;}locked=false;candidateCount=0;lastCandidate='';scanPass=0;detected.value='';$('liveOnce').textContent='🔎 Prüfen';if(!navigator.mediaDevices?.getUserMedia){status.textContent='Kamera in diesem Browser nicht verfügbar.';return;}try{status.textContent='Kamera wird geöffnet …';stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});track=stream.getVideoTracks()[0];video.srcObject=stream;await video.play();area.style.display='block';preview.style.display='none';result.style.display='block';$('scanCamera').textContent='■ Kamera stoppen';const caps=track.getCapabilities?.()||{};if(caps.focusMode?.includes('continuous')){try{await track.applyConstraints({advanced:[{focusMode:'continuous'}]});}catch(e){}}if(caps.torch)$('liveTorch').style.display='inline-block';status.textContent='Kamera aktiv. Gesamte Karte im Bild halten; untere Kartenbereiche werden automatisch geprüft …';getWorker().catch(e=>{status.textContent='OCR konnte nicht geladen werden: '+e.message});if(!stream)return;timer=setInterval(()=>{if(!busy&&!locked&&stream)runFrame()},1600);await runFrame();}catch(e){stop();status.textContent='Kamera oder Texterkennung nicht verfügbar: '+e.message;}};
+ $('scanCamera').onclick=async()=>{if(stream){stop();return;}locked=false;candidateCount=0;lastCandidate='';scanPass=0;detected.value='';$('liveOnce').textContent='🔎 Prüfen';if(!navigator.mediaDevices?.getUserMedia){status.textContent='Kamera in diesem Browser nicht verfügbar.';return;}try{status.textContent='Kamera wird geöffnet …';stream=await navigator.mediaDevices.getUserMedia({audio:false,video:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720}}});track=stream.getVideoTracks()[0];video.srcObject=stream;await video.play();area.style.display='block';preview.style.display='none';result.style.display='block';$('scanCamera').textContent='■ Kamera stoppen';const caps=track.getCapabilities?.()||{};if(caps.focusMode?.includes('continuous')){try{await track.applyConstraints({advanced:[{focusMode:'continuous'}]});}catch(e){}}if(caps.torch)$('liveTorch').style.display='inline-block';status.textContent='Kamera aktiv. Gesamte Karte im Bild halten; untere Kartenbereiche werden automatisch geprüft …';getWorker().catch(e=>{status.textContent='OCR konnte nicht geladen werden: '+e.message});if(!stream)return;timer=setInterval(()=>{if(!busy&&!locked&&stream)runFrame()},1100);await runFrame();}catch(e){stop();status.textContent='Kamera oder Texterkennung nicht verfügbar: '+e.message;}};
  $('liveTorch').onclick=async()=>{if(!track)return;try{torchOn=!torchOn;await track.applyConstraints({advanced:[{torch:torchOn}]});$('liveTorch').textContent=torchOn?'🔦 Licht aus':'🔦 Licht';}catch(e){torchOn=false;status.textContent='Kameralicht wird vom Browser nicht unterstützt.';}};
  $('liveStop').onclick=()=>stop();$('liveOnce').onclick=()=>{if(locked){$('scanCamera').click();}else runFrame();};
  $('liveZoom').onclick=async()=>{if(!track)return;const caps=track.getCapabilities?.()||{};if(!caps.zoom){status.textContent='Kamera-Zoom wird vom Browser nicht unterstützt.';return;}const max=Math.min(caps.zoom.max||2,3);zoomLevel=zoomLevel>=max?1:Math.min(max,zoomLevel+0.5);try{await track.applyConstraints({advanced:[{zoom:zoomLevel}]});$('liveZoom').textContent='🔍 Zoom '+zoomLevel+'×';}catch(e){status.textContent='Zoom konnte nicht eingestellt werden.';}};
